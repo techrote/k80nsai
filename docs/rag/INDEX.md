@@ -1,25 +1,26 @@
 # Shared reference / retrieval bundle
 
-Version 1.0. This is a small, human- and agent-readable source of shared context, not a vector-database project. Read by file and heading. Issues contain task-specific implementation prompts and link here rather than duplicating every contract.
+Version 1.1. This is a small human- and agent-readable context bundle, not a vector-database project. Read by file and heading. Each issue contains its implementation prompt and links here instead of duplicating all contracts.
 
 ## Authority
 
-User-approved scope and this repository's current contract govern scope. Actual pinned code/GGUF govern representation and runtime behavior. Issue acceptance governs closure; verified execution evidence governs performance claims. Earlier conversation sketches are historical proposals, not binding facts. Resolve a conflict in the task notes and amend the contract through a focused PR before dependent work proceeds.
+Current repository scope/contracts govern scope. Actual pinned source and GGUF govern representation and runtime behavior. Issue acceptance governs closure; execution evidence governs performance claims. Earlier conversational sketches are historical proposals, not binding facts. Resolve conflicts in task notes and amend the shared contract before dependent work proceeds.
 
 ## Retrieval map
 
 | Question | Read |
 |---|---|
-| What is required, deferred, or allowed to be approximate? | [CONTRACT.md](CONTRACT.md) |
-| What exactly are B1/B2/B3/adaptive and what must be tested? | [KERNELS.md](KERNELS.md) |
-| Where/how can kernels replace real runtime operations safely? | [INTEGRATION.md](INTEGRATION.md) |
-| What tests and measurements are enough for this POC? | [VALIDATION.md](VALIDATION.md) |
-| How do agents coordinate, build, acquire models, and hand off? | [OPERATIONS.md](OPERATIONS.md) |
-| What was checked, what changed, and which sources apply? | [SOURCES_AND_DECISIONS.md](SOURCES_AND_DECISIONS.md) |
-| Which task is next and what can run concurrently? | [../../OVERVIEW.md](../../OVERVIEW.md) and [../workflow.json](../workflow.json) |
+| Required product, deferred work, permitted approximation | [CONTRACT.md](CONTRACT.md) |
+| B1/B2/B3/adaptive formulas, native format, minimal fixtures | [KERNELS.md](KERNELS.md) |
+| Real graph interception, mode API, buffers, reset and fallback | [INTEGRATION.md](INTEGRATION.md) |
+| Enough testing, honest timing, quality screening | [VALIDATION.md](VALIDATION.md) |
+| Source workspace, build inputs, model acquisition, handoff | [OPERATIONS.md](OPERATIONS.md) |
+| Checked sources, candidate commits and corrected assumptions | [SOURCES_AND_DECISIONS.md](SOURCES_AND_DECISIONS.md) |
+| Task order, concurrency, artifact gates and blockers | [../../OVERVIEW.md](../../OVERVIEW.md), [../workflow.json](../workflow.json) |
+| Publication scope and validation limits | [../DEPLOYMENT_AUDIT.md](../DEPLOYMENT_AUDIT.md) |
 
 ## Minimal task packs
 
-K01–K04: CONTRACT, OPERATIONS, SOURCES. K05/K09–K12: CONTRACT, KERNELS, relevant INTEGRATION and VALIDATION sections. K06: model identity sections of OPERATIONS and SOURCES. K07/K16/K18/K19: VALIDATION plus model/dispatch sections of INTEGRATION. K08/K13/K17: INTEGRATION, CONTRACT, VALIDATION. K14/K15: VALIDATION. K20/K21: atlas plus actual evidence, not a fresh general literature review.
+K01/K03/K04: CONTRACT, OPERATIONS, SOURCES. K05/K09–K12: CONTRACT, KERNELS, relevant INTEGRATION/VALIDATION sections. K06: model sections of OPERATIONS/SOURCES. K07/K16/K18/K19: VALIDATION and model/dispatch parts of INTEGRATION. K08/K13/K17: INTEGRATION, CONTRACT, VALIDATION. K14/K15: VALIDATION. K20/K21: atlas plus actual evidence, not another general literature review.
 
-All agents read AGENTS.md. Do not paste the whole conversation into every issue. Store new evidence in `docs/tasks/Kxx/` and link it from the issue. Keep source SHAs, models and benchmark policy in structured records when implementation creates them. This bundle contains observed candidate source SHAs, not an assertion that those revisions already compile or run on K80.
+All agents read AGENTS.md. Keep new evidence in `docs/tasks/Kxx/`, linked from the issue. Do not paste the entire conversation everywhere or scatter root scratchpads. Candidate source SHAs in this bundle are inspected snapshots, not a claim that those revisions already run on K80. K02 is a retired optional task ID, not a missing prerequisite.

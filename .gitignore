@@ -1,0 +1,19 @@
+# Local weights, credentials, build products and unredacted runs
+models/
+*.gguf
+*.safetensors
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+build/
+build-*/
+.venv/
+__pycache__/
+*.pyc
+*.cubin
+*.ptx
+results/local/
+local/
+*.user

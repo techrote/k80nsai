@@ -398,20 +398,28 @@ void random_cases() {
         const auto snapshot = bytes;
         const ref::NativeView v{bytes.data(), bytes.size(), offset, rows, groups * 128, stride};
         for (unsigned r = 0; r < rows; ++r) {
-            context = "case=random-" + std::to_string(c) + " generator_state=" + std::to_string(generator_state) + "\n" + fx::dump(v, r, x);
+            const std::string row_context = "case=random-" + std::to_string(c) + " generator_state=" + std::to_string(generator_state) + "\n" + fx::dump(v, r, x);
+            context = row_context;
             const auto w = ref::decode_row(v, r);
             float expected = 0;
             for (std::size_t i = 0; i < w.size(); ++i) { const float product = w[i] * flat[i]; expected += product; }
             exact(ref::dot_original(v, r, flat.data(), flat.size()), expected, "original sequential FP32 row");
             for (unsigned p = 1; p <= 3; ++p) {
                 std::vector<ref::Basis> encoded;
-                for (const auto & group : x) encoded.push_back(ref::encode_fixed(group, p));
-                context += "requested_depth=" + std::to_string(p) + "\n";
+                for (std::size_t g = 0; g < x.size(); ++g) {
+                    context = row_context + "requested_depth=" + std::to_string(p)
+                        + " active_group=" + std::to_string(g) + "\n";
+                    encoded.push_back(ref::encode_fixed(x[g], p));
+                }
+                context = row_context + "requested_depth=" + std::to_string(p) + "\n";
                 routes(v, r, encoded);
             }
             for (const auto thresholds : {std::pair<float,float>{1.0f,1.0f},{0.0f,1.0f},{0.0f,0.0f},{.25f,.1f}}) {
                 std::vector<ref::Basis> encoded;
-                for (const auto & group : x) {
+                const std::string adaptive_context = row_context + thresholds_text(thresholds.first, thresholds.second);
+                for (std::size_t g = 0; g < x.size(); ++g) {
+                    context = adaptive_context + "active_group=" + std::to_string(g) + "\n";
+                    const auto & group = x[g];
                     const auto a = ref::encode_adaptive(group, thresholds.first, thresholds.second);
                     const auto b1 = ref::encode_fixed(group, 1), b2 = ref::encode_fixed(group, 2);
                     float e0 = 0, e1 = 0, e2 = 0;
@@ -420,12 +428,13 @@ void random_cases() {
                         e0 += z0; e1 += z1; e2 += z2;
                     }
                     const unsigned depth = e1 / e0 <= thresholds.first ? 1 : e2 / e0 <= thresholds.second ? 2 : 3;
-                    check(a.basis.computed_depth == depth && a.basis.consumed_depth == depth, "random adaptive depth");
+                    integer(int(a.basis.computed_depth), int(depth), "random adaptive computed depth");
+                    integer(int(a.basis.consumed_depth), int(depth), "random adaptive consumed depth");
                     const auto fixed = ref::encode_fixed(group, depth);
                     check(ref::reconstruct(a.basis) == ref::reconstruct(fixed), "random adaptive reconstruction");
                     encoded.push_back(a.basis);
                 }
-                context += thresholds_text(thresholds.first, thresholds.second);
+                context = adaptive_context;
                 routes(v, r, encoded);
             }
         }

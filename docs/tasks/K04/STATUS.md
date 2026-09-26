@@ -84,3 +84,24 @@ success alone would not establish K80, model or library execution.
 build/inspection commands are prepared, but K04 remains open until native target
 acceptance is evidenced and reviewed. No self-merge, issue closure or dependent
 task implementation was performed.
+
+## Independent clean-checkout reproduction
+
+A fresh GitHub clone of `work/K04-sm37-compat` at
+`75edea8c28ec1ad55a554dbf1e625075c23cb903` reproduced the final implementation.
+Clone command (from the implementation checkout; exit 0):
+`git clone --single-branch --branch work/K04-sm37-compat https://github.com/techrote/k80nsai.git "C:/K80nsai/K04 clean checkout"`.
+Source and external host build directories contained spaces; there were no Git
+object alternates, and `git fsck --full` passed. Subsequent changes only publish
+these evidence records and command clarifications, not implementation/vendor code.
+
+[Full clean-checkout transcript](evidence/clean-checkout.txt): initial/final Git
+status empty; pristine verifier, seven parser tests, original K03 configure/full
+build, CTest **2/2**, direct CPU smoke, local/live workflow, full-base whitespace
+check and pristine vendor diff all exit 0. The smoke reports the full tested
+implementation commit and `k80nsai_configure_dirty=false`. Two fresh negative
+configurations exit 1 as expected: K04 without the toolkit, and the **default K03
+profile with GGML_CUDA=ON**. The latter confirms the original CPU-only invariant.
+Positive CUDA compilation/inspection remains pending; clean host reproduction
+does not change that classification. Read-only provenance and final-evidence
+reviewers found no remaining blocking claim/provenance issue after corrections.

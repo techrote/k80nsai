@@ -96,7 +96,8 @@ native-code evidence; actual CUDA11 tool-output integration remains untested.
 ## Executed checks and first failure
 
 Commands below ran at the K04 checkout root. Logs substitute `<CHECKOUT>` and
-`<HOST_BUILD>` for workspace paths; command arguments and exits are retained.
+`<HOST_BUILD>` for workspace paths; command arguments and exits are retained. Line endings and trailing display
+whitespace are normalized; no diagnostics are omitted.
 
 | Check | Result |
 |---|---|
@@ -157,7 +158,8 @@ shared dispatch edits with K08's live owner.
 Use native Windows `cmd.exe` from a clean checkout root after the missing toolkit
 is supplied. The CUDA path below is the expected operator-supplied 11.8 path,
 **not an observed installation**. Preserve stdout/stderr and `%ERRORLEVEL%`
-immediately after each command; stop on nonzero. Use empty build/evidence paths.
+immediately after each command; stop on nonzero except the version-only `cl /Bv`
+query (expected exit 2). Use empty build/evidence paths.
 
 ```bat
 set "K04_VS=C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools"
@@ -282,3 +284,10 @@ counts. These commands were not run; K07 owns model/device setup and execution.
 K09 also needs K05/K08's accepted oracle/interface. Neither downstream gate is
 unblocked by this preparation PR. No model command can honestly be frozen before
 those predecessor identities exist.
+
+The final implementation was also reproduced from an independent GitHub clone at
+`75edea8c28ec1ad55a554dbf1e625075c23cb903`, in source/build paths with spaces.
+[Clean-checkout evidence](evidence/clean-checkout.txt) records source verification,
+full host build, CTest 2/2, direct smoke with `dirty=false`, parser tests, default
+K03 CUDA rejection, K04 missing-toolkit rejection, workflow and clean Git checks.
+See [revision accounting](STATUS.md#independent-clean-checkout-reproduction).

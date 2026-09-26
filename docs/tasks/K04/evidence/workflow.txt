@@ -1,0 +1,12 @@
+cwd: <CHECKOUT>
+command: ["python", "scripts/check_workflow.py"]
+exit: 0
+PASS: 20 core tasks, 2 deferred extensions; graph and links valid
+This does not validate CUDA, model execution, issue completion or server-enforced dependencies.
+
+cwd: <CHECKOUT>
+command: ["python", "scripts/check_workflow.py", "--live"]
+exit: 0
+PASS: 20 core tasks, 2 deferred extensions; graph and links valid
+This does not validate CUDA, model execution, issue completion or server-enforced dependencies.
+

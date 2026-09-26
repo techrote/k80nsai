@@ -1,0 +1,56 @@
+cwd: <CHECKOUT>
+command: ["cmake", "-S", ".", "-B", "C:/K80nsai/build-k04-missing-toolkit", "-G", "Ninja", "-DK80NSAI_CUDA_SM37=ON"]
+exit: 1
+CMake Error at cmake/k04-cuda.cmake:48 (message):
+  K04 requires an existing absolute CUDAToolkit_ROOT for CUDA 11.x; no
+  toolkit is installed by this build
+Call Stack (most recent call first):
+  CMakeLists.txt:4 (include)
+
+
+-- Configuring incomplete, errors occurred!
+
+cwd: <CHECKOUT>
+command: ["cmake", "-S", ".", "-B", "C:/K80nsai/build-k04-ptx-only", "-G", "Ninja", "-DK80NSAI_CUDA_SM37=ON", "-DCMAKE_CUDA_ARCHITECTURES=37-virtual"]
+exit: 1
+CMake Error at cmake/k04-cuda.cmake:43 (message):
+  K04 requires CMAKE_CUDA_ARCHITECTURES=37-real; PTX alone is insufficient
+Call Stack (most recent call first):
+  CMakeLists.txt:4 (include)
+
+
+-- Configuring incomplete, errors occurred!
+
+cwd: <CHECKOUT>
+command: ["cmake", "-S", ".", "-B", "C:/K80nsai/build-k04-system-ggml", "-G", "Ninja", "-DK80NSAI_CUDA_SM37=ON", "-DLLAMA_USE_SYSTEM_GGML=ON"]
+exit: 1
+CMake Error at cmake/k04-cuda.cmake:13 (message):
+  K04 requires LLAMA_USE_SYSTEM_GGML=OFF; use a fresh build directory
+Call Stack (most recent call first):
+  cmake/k04-cuda.cmake:39 (k04_bool)
+  CMakeLists.txt:4 (include)
+
+
+-- Configuring incomplete, errors occurred!
+
+cwd: <CHECKOUT>
+command: ["cmake", "-S", ".", "-B", "C:/K80nsai/build-k04-no-cuda", "-G", "Ninja", "-DK80NSAI_CUDA_SM37=ON", "-DGGML_CUDA=OFF"]
+exit: 1
+CMake Error at cmake/k04-cuda.cmake:13 (message):
+  K04 requires GGML_CUDA=ON; use a fresh build directory
+Call Stack (most recent call first):
+  cmake/k04-cuda.cmake:21 (k04_bool)
+  CMakeLists.txt:4 (include)
+
+
+-- Configuring incomplete, errors occurred!
+
+cwd: <CHECKOUT>
+command: ["python", "tests/test_inspect_sm37.py"]
+exit: 0
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.015s
+
+OK
+

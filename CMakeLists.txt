@@ -1,4 +1,10 @@
 cmake_minimum_required(VERSION 3.19)
+option(K80NSAI_CUDA_SM37 "Build the separate K04 CUDA 11/native sm_37 lane" OFF)
+if(K80NSAI_CUDA_SM37)
+    include(cmake/k04-cuda.cmake)
+    return()
+endif()
+
 project(k80nsai LANGUAGES C CXX)
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)

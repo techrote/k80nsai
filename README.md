@@ -47,3 +47,11 @@ Linux/macOS builds are untested. The root profile rejects CUDA/system-ggml
 overrides. Products stay in ignored `build/` or outside source. Reconfigure after
 switching commits to refresh the implementation identity. Planned experimental
 flags in the reference bundle are not already available binaries.
+
+## CUDA 11 / native sm_37 preparation
+
+The opt-in K04 lane is documented in [BUILD.md](docs/tasks/K04/BUILD.md), with
+[evidence status](docs/tasks/K04/STATUS.md). It requires explicit CUDA 11 and host
+tool paths and inspects the actual backend for native sm_37 code. **Compilation
+is pending an available CUDA toolkit; no K80/model result is claimed.** The
+original default host commands above remain unchanged.

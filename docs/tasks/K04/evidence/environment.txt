@@ -1,0 +1,97 @@
+cwd: <CHECKOUT>
+command: ["powershell", "-NoProfile", "-Command", "\nGet-CimInstance Win32_OperatingSystem | Select-Object Caption,Version,OSArchitecture\nGet-Command cmake,nvcc,cuobjdump,ninja,nvidia-smi -ErrorAction SilentlyContinue | Select-Object Name,Source\n[pscustomobject]@{\n  nvcc = [bool](Get-Command nvcc -ErrorAction SilentlyContinue)\n  cuobjdump = [bool](Get-Command cuobjdump -ErrorAction SilentlyContinue)\n  CUDAEnvironmentVariables = @(Get-ChildItem Env:CUDA* | Select-Object -ExpandProperty Name)\n  CUDAStandardRootExists = Test-Path 'C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA'\n  CUDARegistryKeyExists = Test-Path 'HKLM:\\SOFTWARE\\NVIDIA Corporation\\GPU Computing Toolkit\\CUDA'\n} | ConvertTo-Json\n"]
+exit: 0
+
+Caption                  Version    OSArchitecture
+-------                  -------    --------------
+Microsoft Windows 11 Pro 10.0.26200 64-bit
+
+
+{
+    "nvcc":  false,
+    "cuobjdump":  false,
+    "CUDAEnvironmentVariables":  [
+
+                                 ],
+    "CUDAStandardRootExists":  false,
+    "CUDARegistryKeyExists":  false
+}
+
+
+
+cwd: <CHECKOUT>
+command: ["cmake", "--version"]
+exit: 0
+cmake version 4.4.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+cwd: <CHECKOUT>
+command: ["python", "--version"]
+exit: 0
+Python 3.14.7
+
+cwd: <CHECKOUT>
+command: ["git", "--version"]
+exit: 0
+git version 2.55.0.windows.5
+
+cwd: <CHECKOUT>
+command: ["nvidia-smi", "--query-gpu=name,driver_version,compute_cap", "--format=csv,noheader"]
+exit: 0
+NVIDIA GeForce GTX 1650 SUPER, 616.92, 7.5
+
+cwd: <CHECKOUT>
+command: ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\cl.exe", "/Bv"]
+exit: 2
+Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30159 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+Compiler Passes:
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\cl.exe:        Version 19.29.30159.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\c1.dll:        Version 19.29.30159.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\c1xx.dll:      Version 19.29.30159.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\c2.dll:        Version 19.29.30159.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\c1xx.dll:      Version 19.29.30159.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\link.exe:      Version 14.29.30159.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\mspdb140.dll:  Version 14.29.30159.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\bin\Hostx64\x64\1033\clui.dll: Version 19.29.30159.0
+
+cl : Command line error D8003 : missing source filename
+
+cwd: <CHECKOUT>
+command: ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe", "-version", "-nologo"]
+exit: 0
+16.11.6.22506
+cwd: <CHECKOUT>
+command: ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe", "--version"]
+exit: 0
+1.10.2
+
+cwd: <CHECKOUT>
+command: ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe", "/Bv"]
+exit: 2
+Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35228 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+Compiler Passes:
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe:        Version 19.44.35228.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\c1.dll:        Version 19.44.35228.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\c1xx.dll:      Version 19.44.35228.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\c2.dll:        Version 19.44.35228.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\c1xx.dll:      Version 19.44.35228.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\link.exe:      Version 14.44.35228.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\mspdb140.dll:  Version 14.44.35228.0
+ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\1033\clui.dll: Version 19.44.35228.0
+
+cl : Command line error D8003 : missing source filename
+
+cwd: <CHECKOUT>
+command: ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe", "-version", "-nologo"]
+exit: 0
+17.14.51.32402
+
+cwd: <CHECKOUT>
+command: ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe", "--version"]
+exit: 0
+1.12.1

@@ -10,6 +10,10 @@ There are 20 required implementation tasks, one master tracker and two opt-in ex
 
 Do not promise that Kepler compatibility needs only two patches, that a small model validates 27B's graph, or that fewer POPCs imply a token-rate speedup. Source observations and technical corrections are in [SOURCES_AND_DECISIONS.md](docs/rag/SOURCES_AND_DECISIONS.md).
 
+## K01 source research and execution handoff
+
+The [source map](docs/tasks/K01/SOURCE_MAP.md) selects an exact runtime and links five focused investigations. The [implementation handoff](docs/tasks/K01/IMPLEMENTATION_HANDOFF.md) preserves all existing task/issue mappings and distinguishes acceptance from readiness; [work-order refinements](docs/tasks/K01/WORK_ORDERS.md) supply evidence-backed instructions and outputs. [K01 status](docs/tasks/K01/STATUS.md) records actual review/publication checks. These refinements activate after maintainer acceptance of the K01 documentation PR and K01 signoff, not merely when issue bodies appear. Dependency edges below are unchanged. K03 is then the next import task; no downstream implementation was performed during research.
+
 ## First actions and early feedback
 
 Start K01/#2 to pin and map the source. K03/#3 imports that exact revision without overwriting this workflow. Then K04 build compatibility, K05 host reference tests and K06 model acquisition can run in parallel. After K08 publishes the shared interface, CLI, telemetry and encoder work can proceed in separate files.

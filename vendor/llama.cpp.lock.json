@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/ggml-org/llama.cpp",
+  "commit": "56381e407c0ccfb3a6f71e668a27a901001d22ce",
+  "observed_branch": "master",
+  "tree": "24d31963e64a61fc390ecbdd12f7245a9feb73f9",
+  "destination": "vendor/llama.cpp",
+  "import_commit": "25ef5ba867cdc6bc0089d9cb05e7d89090f71560",
+  "file_count": 3583,
+  "total_bytes": 171774604,
+  "exclusions": [],
+  "retrieval": [
+    "git init --bare <upstream.git>",
+    "git -C <upstream.git> fetch --depth=1 https://github.com/ggml-org/llama.cpp.git 56381e407c0ccfb3a6f71e668a27a901001d22ce",
+    "git -C <upstream.git> rev-parse FETCH_HEAD^{commit} FETCH_HEAD^{tree}"
+  ],
+  "verification": "python scripts/verify_upstream.py --upstream-repo <upstream.git>",
+  "notice_files": [
+    "LICENSE",
+    "gguf-py/LICENSE",
+    "licenses/LICENSE-jsonhpp",
+    "tools/ui/src/lib/vendors/big-integer/LICENSE",
+    "tools/ui/src/lib/vendors/decimal.js/LICENCE.md",
+    "tools/ui/src/lib/vendors/nerdamer-prime/LICENSE",
+    "vendor/cpp-httplib/LICENSE",
+    "vendor/hash/rotate-bits/LICENSE.md",
+    "vendor/hash/sha256/LICENSE",
+    "vendor/hash/xxhash/LICENSE"
+  ],
+  "embedded_notices": "All upstream files retained, including notices embedded in source headers.",
+  "local_modifications": []
+}

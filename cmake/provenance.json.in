@@ -1,0 +1,9 @@
+{
+  "upstream_repository": "@K80NSAI_UPSTREAM_REPOSITORY@",
+  "upstream_commit": "@K80NSAI_UPSTREAM_COMMIT@",
+  "upstream_tree": "@K80NSAI_UPSTREAM_TREE@",
+  "k80nsai_configure_commit": "@K80NSAI_IMPLEMENTATION_COMMIT@",
+  "k80nsai_configure_dirty": @K80NSAI_IMPLEMENTATION_DIRTY@,
+  "profile": "K03 host smoke; no CUDA or model execution",
+  "runtime_version_caveat": "Unmodified upstream Git probes discover the outer K80NSAI repository"
+}

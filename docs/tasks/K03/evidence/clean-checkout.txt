@@ -1,0 +1,637 @@
+Publication normalization: personal tool paths are replaced by symbolic prefixes; line endings and trailing whitespace are normalized. Command text, outputs and exit codes are otherwise retained.
+
+Independent K03 clean-checkout reproduction
+Symbolic path map: <SOURCE>=K03 implementation worktree; <VALIDATION>=disposable independent validation directory; <CHECKOUT>=<VALIDATION>/checkout with spaces; <BUILD>=<VALIDATION>/build with spaces. Personal interpreter/user prefixes are sanitized. Commands use the exact argument vectors, rendered by Windows list2cmdline. No upstream/source-cache access.
+
+UTC 2026-09-26T10:23:45.292521+00:00
+CWD <SOURCE>
+COMMAND git status --short
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:45.362541+00:00
+CWD <SOURCE>
+COMMAND git rev-parse HEAD
+cd24a030b4a9ddfb1f39d08d1bb114e8c7606049
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:45.404748+00:00
+CWD <SOURCE>
+COMMAND git --version
+git version 2.55.0.windows.5
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:45.441744+00:00
+CWD <SOURCE>
+COMMAND python --version
+Python 3.14.7
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:45.458265+00:00
+CWD <SOURCE>
+COMMAND cmake --version
+cmake version 4.4.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:45.511689+00:00
+CWD <SOURCE>
+COMMAND ctest --version
+ctest version 4.4.3
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:45.542684+00:00
+CWD <VALIDATION>
+COMMAND git clone --no-local --branch work/K03-runtime-import <SOURCE> "<CHECKOUT>"
+Cloning into '<CHECKOUT>'...
+Updating files:  27% (992/3617)
+Updating files:  28% (1013/3617)
+Updating files:  29% (1049/3617)
+Updating files:  30% (1086/3617)
+Updating files:  31% (1122/3617)
+Updating files:  32% (1158/3617)
+Updating files:  33% (1194/3617)
+Updating files:  34% (1230/3617)
+Updating files:  35% (1266/3617)
+Updating files:  36% (1303/3617)
+Updating files:  37% (1339/3617)
+Updating files:  38% (1375/3617)
+Updating files:  39% (1411/3617)
+Updating files:  40% (1447/3617)
+Updating files:  41% (1483/3617)
+Updating files:  42% (1520/3617)
+Updating files:  43% (1556/3617)
+Updating files:  44% (1592/3617)
+Updating files:  45% (1628/3617)
+Updating files:  46% (1664/3617)
+Updating files:  47% (1700/3617)
+Updating files:  48% (1737/3617)
+Updating files:  49% (1773/3617)
+Updating files:  50% (1809/3617)
+Updating files:  51% (1845/3617)
+Updating files:  52% (1881/3617)
+Updating files:  53% (1918/3617)
+Updating files:  54% (1954/3617)
+Updating files:  55% (1990/3617)
+Updating files:  56% (2026/3617)
+Updating files:  57% (2062/3617)
+Updating files:  57% (2078/3617)
+Updating files:  58% (2098/3617)
+Updating files:  59% (2135/3617)
+Updating files:  60% (2171/3617)
+Updating files:  61% (2207/3617)
+Updating files:  62% (2243/3617)
+Updating files:  63% (2279/3617)
+Updating files:  64% (2315/3617)
+Updating files:  65% (2352/3617)
+Updating files:  66% (2388/3617)
+Updating files:  67% (2424/3617)
+Updating files:  68% (2460/3617)
+Updating files:  69% (2496/3617)
+Updating files:  70% (2532/3617)
+Updating files:  71% (2569/3617)
+Updating files:  72% (2605/3617)
+Updating files:  73% (2641/3617)
+Updating files:  74% (2677/3617)
+Updating files:  75% (2713/3617)
+Updating files:  76% (2749/3617)
+Updating files:  77% (2786/3617)
+Updating files:  78% (2822/3617)
+Updating files:  79% (2858/3617)
+Updating files:  80% (2894/3617)
+Updating files:  81% (2930/3617)
+Updating files:  82% (2966/3617)
+Updating files:  83% (3003/3617)
+Updating files:  84% (3039/3617)
+Updating files:  85% (3075/3617)
+Updating files:  86% (3111/3617)
+Updating files:  86% (3115/3617)
+Updating files:  87% (3147/3617)
+Updating files:  88% (3183/3617)
+Updating files:  89% (3220/3617)
+Updating files:  90% (3256/3617)
+Updating files:  91% (3292/3617)
+Updating files:  92% (3328/3617)
+Updating files:  93% (3364/3617)
+Updating files:  94% (3400/3617)
+Updating files:  95% (3437/3617)
+Updating files:  96% (3473/3617)
+Updating files:  97% (3509/3617)
+Updating files:  98% (3545/3617)
+Updating files:  99% (3581/3617)
+Updating files: 100% (3617/3617)
+Updating files: 100% (3617/3617), done.
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:54.531037+00:00
+CWD <CHECKOUT>
+COMMAND git rev-parse HEAD
+cd24a030b4a9ddfb1f39d08d1bb114e8c7606049
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:54.570195+00:00
+CWD <CHECKOUT>
+COMMAND git status --porcelain=v1
+
+EXIT 0; EXPECTED 0
+ASSERT PASS: .git/objects/info/alternates absent; --no-local clone has independent reachable Git objects.
+
+UTC 2026-09-26T10:23:54.727777+00:00
+CWD <CHECKOUT>
+COMMAND git fsck --full
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:23:55.902624+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/verify_upstream.py
+PASS: https://github.com/ggml-org/llama.cpp@56381e407c0ccfb3a6f71e668a27a901001d22ce
+tree=24d31963e64a61fc390ecbdd12f7245a9feb73f9; files=3583; bytes=171774604; exclusions=0
+Committed tree, import commit, index modes, working bytes and notices verified.
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:24:18.783536+00:00
+CWD <CHECKOUT>
+COMMAND git rev-parse HEAD:vendor/llama.cpp
+24d31963e64a61fc390ecbdd12f7245a9feb73f9
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:24:18.825083+00:00
+CWD <CHECKOUT>
+COMMAND git rev-parse 25ef5ba867cdc6bc0089d9cb05e7d89090f71560:vendor/llama.cpp
+24d31963e64a61fc390ecbdd12f7245a9feb73f9
+EXIT 0; EXPECTED 0
+ASSERT PASS: exact pinned commit/tree, no exclusions, all 10 listed notice files present.
+
+UTC 2026-09-26T10:24:18.865183+00:00
+CWD <CHECKOUT>
+COMMAND cmake -S "<CHECKOUT>" -B "<BUILD>" -G "Visual Studio 17 2022" -A x64
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+-- The C compiler identification is MSVC 19.44.35228.0
+-- The CXX compiler identification is MSVC 19.44.35228.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.55.0.windows.5")
+-- Found Python3: <PYTHON_INSTALL>/python.exe (found version "3.14.7") found components: Interpreter
+-- PASS: https://github.com/ggml-org/llama.cpp@56381e407c0ccfb3a6f71e668a27a901001d22ce
+tree=24d31963e64a61fc390ecbdd12f7245a9feb73f9; files=3583; bytes=171774604; exclusions=0
+Committed tree, import commit, index modes, working bytes and notices verified.
+
+-- llama.cpp version: 0.4.0-dev
+CMAKE_BUILD_TYPE=
+-- The ASM compiler identification is MSVC
+CMake Warning (policy) at C:/Program Files/CMake/share/cmake-4.4/Modules/CMakeDetermineASMCompiler.cmake:237 (cmake_policy):
+  Policy CMP0194 is not set: MSVC is not an assembler for language ASM.  Run
+  "cmake --help-policy CMP0194" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+Call Stack (most recent call first):
+  vendor/llama.cpp/ggml/CMakeLists.txt:3 (project)
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- Found assembler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Found Threads: TRUE
+-- CMAKE_SYSTEM_PROCESSOR: AMD64
+-- CMAKE_GENERATOR_PLATFORM: x64
+-- GGML_SYSTEM_ARCH: x86
+-- Including CPU backend
+-- x86 detected
+-- Adding CPU backend variant ggml-cpu:
+-- ggml version: 0.23.0
+-- ggml commit:  cd24a03
+-- Configuring done (9.1s)
+-- Generating done (0.7s)
+-- Build files have been written to: <BUILD>
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:24:28.725884+00:00
+CWD <CHECKOUT>
+COMMAND cmake --build "<BUILD>" --config Release --target k80nsai-host-smoke --parallel 2
+MSBuild version 17.14.51+25f168cee for .NET Framework
+
+  1>Checking Build System
+  Building Custom Rule <CHECKOUT>/vendor/llama.cpp/ggml/src/CMakeLists.txt
+  ggml.c
+  ggml.cpp
+  ggml-alloc.c
+  ggml-quants.c
+  Generating Code...
+  ggml-backend.cpp
+  ggml-backend-meta.cpp
+  ggml-opt.cpp
+  ggml-threading.cpp
+  gguf.cpp
+  Generating Code...
+  ggml-base.vcxproj -> <BUILD>\vendor\llama.cpp\ggml\src\Release\ggml-base.lib
+  Building Custom Rule <CHECKOUT>/vendor/llama.cpp/ggml/src/CMakeLists.txt
+  cmake_pch.cxx
+  cmake_pch.c
+  ggml-cpu.c
+  ggml-cpu.cpp
+  repack.cpp
+  iqp.cpp
+  hbm.cpp
+  traits.cpp
+  amx.cpp
+  mmq.cpp
+  binary-ops.cpp
+  unary-ops.cpp
+  vec.cpp
+  ops.cpp
+  Generating Code...
+  quants.c
+  quants.c
+  repack.cpp
+  ggml-cpu.vcxproj -> <BUILD>\vendor\llama.cpp\ggml\src\Release\ggml-cpu.lib
+  Building Custom Rule <CHECKOUT>/vendor/llama.cpp/ggml/src/CMakeLists.txt
+  ggml-backend-dl.cpp
+  ggml-backend-reg.cpp
+  Generating Code...
+  ggml.vcxproj -> <BUILD>\vendor\llama.cpp\ggml\src\Release\ggml.lib
+  Building Custom Rule <CHECKOUT>/vendor/llama.cpp/src/CMakeLists.txt
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1129,5): warning MSB8027: Two or more files with the name of llama.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are <CHECKOUT>\vendor\llama.cpp\src\llama.cpp, <CHECKOUT>\vendor\llama.cpp\src\models\llama.cpp. [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  cmake_pch.cxx
+  unity_9_cxx.cxx
+  unity_8_cxx.cxx
+  unity_7_cxx.cxx
+  unity_6_cxx.cxx
+  unity_5_cxx.cxx
+  unity_4_cxx.cxx
+  unity_3_cxx.cxx
+  unity_2_cxx.cxx
+  unity_1_cxx.cxx
+  unity_0_cxx.cxx
+  llama.cpp
+<CHECKOUT>\vendor\llama.cpp\src\llama.cpp(75,5): warning C4297: 'llama_load_mode_from_str': function assumed not to throw an exception but does [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  (compiling source file '../../../../checkout%20with%20spaces/vendor/llama.cpp/src/llama.cpp')
+      <CHECKOUT>\vendor\llama.cpp\src\llama.cpp(75,5):
+      __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
+
+  llama-adapter.cpp
+  llama-arch.cpp
+  llama-batch.cpp
+  llama-chat.cpp
+  llama-context.cpp
+  llama-cparams.cpp
+  llama-grammar.cpp
+  llama-graph.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(3630,56): warning C4244: 'argument': conversion from 'const int64_t' to 'uint32_t', possible loss of data [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  (compiling source file '../../../../checkout%20with%20spaces/vendor/llama.cpp/src/llama-graph.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory(3630,56):
+      the template instantiation context (the oldest one first) is
+          <CHECKOUT>\vendor\llama.cpp\src\llama-graph.cpp(2484,21):
+          see reference to function template instantiation 'std::unique_ptr<llm_graph_input_out_ids,std::default_delete<llm_graph_input_out_ids>> std::make_unique<llm_graph_input_out_ids,const llama_hparams&,const llama_cparams&,const int64_t&,0>(const llama_hparams &,const llama_cparams &,const int64_t &)' being compiled
+
+  llama-hparams.cpp
+  Generating Code...
+  Compiling...
+  llama-impl.cpp
+  llama-io.cpp
+  llama-kv-cache.cpp
+  llama-kv-cache-iswa.cpp
+  llama-kv-cache-dsa.cpp
+  llama-kv-cache-dsa-iswa.cpp
+  llama-kv-cache-msa.cpp
+  llama-kv-cache-dsv4.cpp
+  llama-memory.cpp
+  llama-memory-hybrid.cpp
+  llama-memory-hybrid-iswa.cpp
+  llama-memory-hybrid-idx.cpp
+  llama-memory-recurrent.cpp
+  llama-mmap.cpp
+  llama-model-loader.cpp
+  llama-model-saver.cpp
+  llama-model.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         with [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         [ [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:             _Ty=int64_t [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         ] [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         and [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         [ [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:             _Ty2=uint32_t [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         ] [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  (compiling source file '../../../../checkout%20with%20spaces/vendor/llama.cpp/src/llama-model.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54):
+      the template instantiation context (the oldest one first) is
+          <CHECKOUT>\vendor\llama.cpp\src\llama-model.cpp(622,29):
+          see reference to function template instantiation 'std::pair<int64_t,uint32_t>::pair<const int64_t&,int64_t,0>(_Other1,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=const int64_t &,
+              _Other2=int64_t
+          ]
+              <CHECKOUT>\vendor\llama.cpp\src\llama-model.cpp(622,21):
+              see the first reference to 'std::pair<int64_t,uint32_t>::pair' in 'llama_meta_device_get_split_state::<lambda_8c8095724d3e77ca3b510676865af453>::operator ()'
+
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244: 'initializing': conversion from 'const int64_t' to '_Ty2', possible loss of data [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         with [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         [ [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:             _Ty2=uint32_t [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         ] [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  (compiling source file '../../../../checkout%20with%20spaces/vendor/llama.cpp/src/llama-model.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54):
+      the template instantiation context (the oldest one first) is
+          <CHECKOUT>\vendor\llama.cpp\src\llama-model.cpp(625,29):
+          see reference to function template instantiation 'std::pair<int64_t,uint32_t>::pair<const int64_t&,const int64_t&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=const int64_t &,
+              _Other2=const int64_t &
+          ]
+              <CHECKOUT>\vendor\llama.cpp\src\llama-model.cpp(625,21):
+              see the first reference to 'std::pair<int64_t,uint32_t>::pair' in 'llama_meta_device_get_split_state::<lambda_8c8095724d3e77ca3b510676865af453>::operator ()'
+
+  llama-quant.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits(1680,98): warning C4244: 'argument': conversion from 'unsigned __int64' to 'int', possible loss of data [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  (compiling source file '../../../../checkout%20with%20spaces/vendor/llama.cpp/src/llama-quant.cpp')
+      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits(1680,98):
+      the template instantiation context (the oldest one first) is
+          <CHECKOUT>\vendor\llama.cpp\src\llama-quant.cpp(275,17):
+          see reference to function template instantiation 'std::thread &std::vector<std::thread,std::allocator<std::thread>>::emplace_back<llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>&,ggml_type&,const uint8_t*,float*,size_t&>(llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f> &,ggml_type &,const uint8_t *&&,float *&&,size_t &)' being compiled
+              <CHECKOUT>\vendor\llama.cpp\src\llama-quant.cpp(275,29):
+              see the first reference to 'std::vector<std::thread,std::allocator<std::thread>>::emplace_back' in 'llama_tensor_dequantize_impl'
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector(924,24):
+          see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>&,ggml_type&,const unsigned char*,float*,size_t&>(llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f> &,ggml_type &,const unsigned char *&&,float *&&,size_t &)' being compiled
+          with
+          [
+              _Ty=std::thread
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector(845,20):
+          see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>&,ggml_type&,const unsigned char*,float*,size_t&>(llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f> &,ggml_type &,const unsigned char *&&,float *&&,size_t &)' being compiled
+          with
+          [
+              _Ty=std::thread
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector(863,27):
+          see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>&,ggml_type&,const unsigned char*,float*,size_t&>(_Alloc &,_Objty *const ,llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f> &,ggml_type &,const unsigned char *&&,float *&&,size_t &)' being compiled
+          with
+          [
+              _Alloc=std::allocator<std::thread>,
+              _Ty=std::thread,
+              _Objty=std::thread
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xmemory(732,82):
+          see reference to function template instantiation 'std::thread::thread<llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>&,ggml_type&,_T,float*,size_t&,0>(_Fn,ggml_type &,_T &&,float *&&,size_t &)' being compiled
+          with
+          [
+              _T=const uint8_t *,
+              _Fn=llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f> &
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\thread(93,9):
+          see reference to function template instantiation 'void std::thread::_Start<llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>&,ggml_type&,_Ty,float*,size_t&>(_Fn,ggml_type &,_Ty &&,float *&&,size_t &)' being compiled
+          with
+          [
+              _Ty=const uint8_t *,
+              _Fn=llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f> &
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\thread(76,40):
+          see reference to function template instantiation 'unsigned int (__cdecl *std::thread::_Get_invoke<std::thread::_Start::_Tuple,0,1,2,3,4>(std::integer_sequence<size_t,0,1,2,3,4>) noexcept)(void *) noexcept' being compiled
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\thread(67,17):
+          see reference to function template instantiation 'unsigned int std::thread::_Invoke<_Tuple,0,1,2,3,4>(void *) noexcept' being compiled
+          with
+          [
+              _Tuple=std::thread::_Start::_Tuple
+          ]
+          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\thread(60,14):
+          see reference to function template instantiation 'void std::invoke<llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>,ggml_type,const uint8_t*,_Ty*,unsigned __int64>(_Callable &&,_Ty1 &&,const uint8_t *&&,_Ty *&&,unsigned __int64 &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=float,
+              _Callable=llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>,
+              _Ty1=ggml_type
+          ]
+
+  llama-sampler.cpp
+<CHECKOUT>\vendor\llama.cpp\src\llama-sampler.cpp(1165,13): warning C4834: discarding return value of function with [[nodiscard]] attribute [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  (compiling source file '../../../../checkout%20with%20spaces/vendor/llama.cpp/src/llama-sampler.cpp')
+
+<CHECKOUT>\vendor\llama.cpp\src\llama-sampler.cpp(1380,9): warning C4834: discarding return value of function with [[nodiscard]] attribute [<BUILD>\vendor\llama.cpp\src\llama.vcxproj]
+  (compiling source file '../../../../checkout%20with%20spaces/vendor/llama.cpp/src/llama-sampler.cpp')
+
+  llama-vocab.cpp
+  Generating Code...
+  Compiling...
+  unicode-data.cpp
+  unicode.cpp
+  Generating Code...
+  llama.vcxproj -> <BUILD>\vendor\llama.cpp\src\Release\llama.lib
+  Building Custom Rule <CHECKOUT>/CMakeLists.txt
+  host-smoke.cpp
+  k80nsai-host-smoke.vcxproj -> <BUILD>\Release\k80nsai-host-smoke.exe
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:48.284791+00:00
+CWD <CHECKOUT>
+COMMAND ctest --test-dir "<BUILD>" -C Release --output-on-failure
+Test project <BUILD>
+    Start 1: source-integrity
+1/2 Test #1: source-integrity .................   Passed    1.41 sec
+    Start 2: host-smoke
+2/2 Test #2: host-smoke .......................   Passed    0.10 sec
+
+100% tests passed out of 2
+
+Total Test time (real) =   1.61 sec
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:49.936675+00:00
+CWD <CHECKOUT>
+COMMAND "<BUILD>\Release\k80nsai-host-smoke.exe"
+upstream_runtime=https://github.com/ggml-org/llama.cpp@56381e407c0ccfb3a6f71e668a27a901001d22ce
+upstream_tree=24d31963e64a61fc390ecbdd12f7245a9feb73f9
+k80nsai_configure_commit=cd24a030b4a9ddfb1f39d08d1bb114e8c7606049
+k80nsai_configure_dirty=false
+raw_llama_version=0.4.0-dev
+raw_ggml_commit=cd24a03 (outer build metadata)
+backend=CPU
+PASS: llama/ggml host initialization; no model loaded
+EXIT 0; EXPECTED 0
+ASSERT PASS: direct smoke reports distinct exact upstream runtime and K80NSAI implementation commits.
+GENERATED PROVENANCE
+{
+  "upstream_repository": "https://github.com/ggml-org/llama.cpp",
+  "upstream_commit": "56381e407c0ccfb3a6f71e668a27a901001d22ce",
+  "upstream_tree": "24d31963e64a61fc390ecbdd12f7245a9feb73f9",
+  "k80nsai_configure_commit": "cd24a030b4a9ddfb1f39d08d1bb114e8c7606049",
+  "k80nsai_configure_dirty": false,
+  "profile": "K03 host smoke; no CUDA or model execution",
+  "runtime_version_caveat": "Unmodified upstream Git probes discover the outer K80NSAI repository"
+}
+
+
+UTC 2026-09-26T10:25:49.954145+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/check_workflow.py
+PASS: 20 core tasks, 2 deferred extensions; graph and links valid
+This does not validate CUDA, model execution, issue completion or server-enforced dependencies.
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:50.297910+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/check_workflow.py --live
+PASS: 20 core tasks, 2 deferred extensions; graph and links valid
+This does not validate CUDA, model execution, issue completion or server-enforced dependencies.
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:50.991520+00:00
+CWD <CHECKOUT>
+COMMAND git diff --check
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:51.051821+00:00
+CWD <CHECKOUT>
+COMMAND git diff --exit-code 25ef5ba867cdc6bc0089d9cb05e7d89090f71560 HEAD -- vendor/llama.cpp
+
+EXIT 0; EXPECTED 0
+NEGATIVE MUTATION: append ASCII bytes to vendor/llama.cpp/README.md
+
+UTC 2026-09-26T10:25:51.095672+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/verify_upstream.py
+FAIL: Modified vendor file: README.md
+EXIT 1; EXPECTED 1
+NEGATIVE MUTATION: move vendor/llama.cpp/LICENSE outside source temporarily
+
+UTC 2026-09-26T10:25:51.701743+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/verify_upstream.py
+FAIL: Vendor file inventory differs: missing=['LICENSE'], extra=[]
+EXIT 1; EXPECTED 1
+NEGATIVE MUTATION: create vendor/llama.cpp/build/independent-extra.bin
+
+UTC 2026-09-26T10:25:52.279198+00:00
+CWD <CHECKOUT>
+COMMAND git check-ignore -- vendor/llama.cpp/build/independent-extra.bin
+vendor/llama.cpp/build/independent-extra.bin
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:52.320153+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/verify_upstream.py
+FAIL: Vendor file inventory differs: missing=[], extra=['build/independent-extra.bin']
+EXIT 1; EXPECTED 1
+
+UTC 2026-09-26T10:25:52.912834+00:00
+CWD <CHECKOUT>
+COMMAND git update-index --chmod=+x vendor/llama.cpp/LICENSE
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:52.954427+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/verify_upstream.py
+FAIL: Vendor index differs from the locked tree (including file modes)
+EXIT 1; EXPECTED 1
+
+UTC 2026-09-26T10:25:53.223644+00:00
+CWD <CHECKOUT>
+COMMAND git update-index --chmod=-x vendor/llama.cpp/LICENSE
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:53.271043+00:00
+CWD <CHECKOUT>
+COMMAND python scripts/verify_upstream.py
+PASS: https://github.com/ggml-org/llama.cpp@56381e407c0ccfb3a6f71e668a27a901001d22ce
+tree=24d31963e64a61fc390ecbdd12f7245a9feb73f9; files=3583; bytes=171774604; exclusions=0
+Committed tree, import commit, index modes, working bytes and notices verified.
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:25:54.559836+00:00
+CWD <CHECKOUT>
+COMMAND cmake -S "<CHECKOUT>" -B "<VALIDATION>\negative system ggml" -G "Visual Studio 17 2022" -A x64 -DLLAMA_USE_SYSTEM_GGML=ON
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+-- The C compiler identification is MSVC 19.44.35228.0
+-- The CXX compiler identification is MSVC 19.44.35228.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.55.0.windows.5")
+-- Found Python3: <PYTHON_INSTALL>/python.exe (found version "3.14.7") found components: Interpreter
+-- PASS: https://github.com/ggml-org/llama.cpp@56381e407c0ccfb3a6f71e668a27a901001d22ce
+tree=24d31963e64a61fc390ecbdd12f7245a9feb73f9; files=3583; bytes=171774604; exclusions=0
+Committed tree, import commit, index modes, working bytes and notices verified.
+
+CMake Error at CMakeLists.txt:36 (message):
+  LLAMA_USE_SYSTEM_GGML=ON is outside the K03 host smoke configuration
+
+
+-- Configuring incomplete, errors occurred!
+EXIT 1; EXPECTED 1
+
+UTC 2026-09-26T10:26:00.811592+00:00
+CWD <CHECKOUT>
+COMMAND git status --porcelain=v1
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:26:00.872586+00:00
+CWD <CHECKOUT>
+COMMAND git status --porcelain=v1
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:26:00.933230+00:00
+CWD <SOURCE>
+COMMAND git status --porcelain=v1
+
+EXIT 0; EXPECTED 0
+
+UTC 2026-09-26T10:26:00.994736+00:00
+CWD <SOURCE>
+COMMAND git rev-parse HEAD
+cd24a030b4a9ddfb1f39d08d1bb114e8c7606049
+EXIT 0; EXPECTED 0
+COMPLETE: independent clean checkout/build/tests and all five negative controls passed; implementation source worktree unchanged by reviewer; validation products outside tracked source. Host-only evidence, no CUDA/K80/model inference evidence.
+
+Independent generated-build audit at cd24a030b4a9ddfb1f39d08d1bb114e8c7606049
+BUILD_SHARED_LIBS=OFF
+LLAMA_USE_SYSTEM_GGML=OFF
+GGML_BACKEND_DL=OFF
+GGML_CUDA=OFF
+GGML_CPU=ON
+FETCHCONTENT_FULLY_DISCONNECTED=ON
+LLAMA_BUILD_COMMON=OFF
+LLAMA_BUILD_TOOLS=OFF
+LLAMA_BUILD_SERVER=OFF
+LLAMA_BUILD_APP=OFF
+LLAMA_BUILD_UI=OFF
+LLAMA_BUILD_MTMD=OFF
+GGML_CPU_ALL_VARIANTS=OFF
+GGML_NATIVE=OFF
+Generated host-smoke project references:
+<BUILD>\ZERO_CHECK.vcxproj
+<BUILD>\vendor\llama.cpp\ggml\src\ggml.vcxproj
+<BUILD>\vendor\llama.cpp\ggml\src\ggml-base.vcxproj
+<BUILD>\vendor\llama.cpp\ggml\src\ggml-cpu.vcxproj
+<BUILD>\vendor\llama.cpp\src\llama.vcxproj
+Generated Release x64 linker dependencies:
+vendor\llama.cpp\src\Release\llama.lib;vendor\llama.cpp\ggml\src\Release\ggml.lib;vendor\llama.cpp\ggml\src\Release\ggml-cpu.lib;vendor\llama.cpp\ggml\src\Release\ggml-base.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib
+PASS: no originating implementation-worktree path in generated CMake, VS project, cache, JSON, header text.
+PASS: configure selects bundled static CPU/llama/ggml and rejects dependency fetching/system ggml.

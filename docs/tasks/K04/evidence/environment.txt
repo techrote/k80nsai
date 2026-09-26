@@ -4,9 +4,9 @@ exit: 0
 
 Caption                  Version    OSArchitecture
 -------                  -------    --------------
-Microsoft Windows 11 Pro 10.0.26200 64-bit        
-                                                  
-                                                  
+Microsoft Windows 11 Pro 10.0.26200 64-bit
+
+
 {
     "nvcc":  false,
     "cuobjdump":  false,
@@ -95,4 +95,3 @@ cwd: <CHECKOUT>
 command: ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe", "--version"]
 exit: 0
 1.12.1
-

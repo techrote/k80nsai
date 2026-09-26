@@ -52,7 +52,7 @@ suppress it.
 -- GGML_SYSTEM_ARCH: x86
 -- Including CPU backend
 -- x86 detected
--- Adding CPU backend variant ggml-cpu:  
+-- Adding CPU backend variant ggml-cpu:
 -- ggml version: 0.23.0
 -- ggml commit:  fcf54b8
 -- Configuring done (9.5s)
@@ -121,7 +121,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Microsoft
   (compiling source file '../../../../K04-sm37-compat/vendor/llama.cpp/src/llama.cpp')
       <CHECKOUT>\vendor\llama.cpp\src\llama.cpp(75,5):
       __declspec(nothrow), throw(), noexcept(true), or noexcept was specified on the function
-  
+
   llama-adapter.cpp
   llama-arch.cpp
   llama-batch.cpp
@@ -136,7 +136,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.
       the template instantiation context (the oldest one first) is
           <CHECKOUT>\vendor\llama.cpp\src\llama-graph.cpp(2484,21):
           see reference to function template instantiation 'std::unique_ptr<llm_graph_input_out_ids,std::default_delete<llm_graph_input_out_ids>> std::make_unique<llm_graph_input_out_ids,const llama_hparams&,const llama_cparams&,const int64_t&,0>(const llama_hparams &,const llama_cparams &,const int64_t &)' being compiled
-  
+
   llama-hparams.cpp
   Generating Code...
   Compiling...
@@ -178,7 +178,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.
           ]
               <CHECKOUT>\vendor\llama.cpp\src\llama-model.cpp(622,21):
               see the first reference to 'std::pair<int64_t,uint32_t>::pair' in 'llama_meta_device_get_split_state::<lambda_86692a21f18241351826466831a3abd0>::operator ()'
-  
+
 C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244: 'initializing': conversion from 'const int64_t' to '_Ty2', possible loss of data [<HOST_BUILD>\vendor\llama.cpp\src\llama.vcxproj]
 C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         with [<HOST_BUILD>\vendor\llama.cpp\src\llama.vcxproj]
 C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility(274,54): warning C4244:         [ [<HOST_BUILD>\vendor\llama.cpp\src\llama.vcxproj]
@@ -196,7 +196,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.
           ]
               <CHECKOUT>\vendor\llama.cpp\src\llama-model.cpp(625,21):
               see the first reference to 'std::pair<int64_t,uint32_t>::pair' in 'llama_meta_device_get_split_state::<lambda_86692a21f18241351826466831a3abd0>::operator ()'
-  
+
   llama-quant.cpp
 C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits(1680,98): warning C4244: 'argument': conversion from 'unsigned __int64' to 'int', possible loss of data [<HOST_BUILD>\vendor\llama.cpp\src\llama.vcxproj]
   (compiling source file '../../../../K04-sm37-compat/vendor/llama.cpp/src/llama-quant.cpp')
@@ -256,14 +256,14 @@ C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.
               _Callable=llama_tensor_dequantize_impl::<lambda_121cf0dbfedb4a0daa40ff737e80b57f>,
               _Ty1=ggml_type
           ]
-  
+
   llama-sampler.cpp
 <CHECKOUT>\vendor\llama.cpp\src\llama-sampler.cpp(1165,13): warning C4834: discarding return value of function with [[nodiscard]] attribute [<HOST_BUILD>\vendor\llama.cpp\src\llama.vcxproj]
   (compiling source file '../../../../K04-sm37-compat/vendor/llama.cpp/src/llama-sampler.cpp')
-  
+
 <CHECKOUT>\vendor\llama.cpp\src\llama-sampler.cpp(1380,9): warning C4834: discarding return value of function with [[nodiscard]] attribute [<HOST_BUILD>\vendor\llama.cpp\src\llama.vcxproj]
   (compiling source file '../../../../K04-sm37-compat/vendor/llama.cpp/src/llama-sampler.cpp')
-  
+
   llama-vocab.cpp
   Generating Code...
   Compiling...
@@ -299,4 +299,3 @@ raw_llama_version=0.4.0-dev
 raw_ggml_commit=fcf54b8 (outer build metadata)
 backend=CPU
 PASS: llama/ggml host initialization; no model loaded
-

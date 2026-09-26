@@ -2,6 +2,10 @@
 
 Audit date: 2026-09-12. This records direct source observations and engineering decisions. It does not certify a working GPU build. The earlier generated v2 benchmark files were not present in the current working filesystem; this workflow reconciles the visible conversation and freshly inspected sources, not a newly repeated audit of those missing files or their claimed exhaustive tests.
 
+## K01 selection update — 2026-09-26
+
+The candidate-only status of S1/S2 below is superseded by the [K01 source decision](../tasks/K01/SOURCE_MAP.md), proposed for maintainer acceptance: mainline `56381e407c0ccfb3a6f71e668a27a901001d22ce`. The source map and five focused notes contain the current verified comparison; the original register remains provenance, not a second runtime selection. Source inspection establishes neither CUDA11 compilation nor K80 inference. [Status and activation](../tasks/K01/STATUS.md) distinguish research, publication and downstream readiness.
+
 ## Primary sources and observed pins
 
 **S1 — Prism runtime candidate.** Repository default branch observed as `prism`; head observed as `d8f26eec76da6d09bb708bcba51ef64b8cd868a3`.

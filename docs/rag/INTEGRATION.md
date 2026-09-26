@@ -35,7 +35,7 @@ Do not cache by activation pointer alone: runtimes reuse addresses between layer
 
 ## Chat and state changes
 
-Prefer the existing CLI conversational mode and GGUF chat template. A thin launcher/command wrapper is acceptable; no GUI, no exposed server. Avoid resetting conversation on every ordinary turn.
+K01 source inspection found that both pinned upstream CLIs launch an internal HTTP server; see [state/CLI source evidence](../tasks/K01/research/state-cli-and-device.md). For the existing no-exposed-server boundary, K13 should adapt the existing in-process `tools/completion/completion.cpp` / `llama-completion-impl` path with its common argument/model/context, Jinja template and sampler facilities, then add the required lifecycle/error behavior and explicit thinking/kwargs propagation. It builds without the server-backed CLI. `examples/simple-chat` is only a minimal fallback illustration; neither existing path alone satisfies all K13 acceptance. Preserve the GGUF chat template. A thin launcher/command wrapper is acceptable; no GUI, no exposed server. Avoid resetting conversation on every ordinary turn.
 
 Required commands: `/help`, `/stats`, `/reset`, `/quit`; `/mode` is useful but must be correct. On a mode/scope/threshold change, either explicitly start a fresh session or rebuild state from the retained transcript under the new policy. The simplest POC is an announced fresh session. Never reuse old-policy KV or recurrent/linear-attention state and call the result a clean comparison. Clear prompt/prefix cache and prepared activation state too. If full state reset cannot be guaranteed, recreate the inference context, not just a token counter.
 

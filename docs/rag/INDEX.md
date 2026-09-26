@@ -19,6 +19,16 @@ Current repository scope/contracts govern scope. Actual pinned source and GGUF g
 | Task order, concurrency, artifact gates and blockers | [../../OVERVIEW.md](../../OVERVIEW.md), [../workflow.json](../workflow.json) |
 | Publication scope and validation limits | [../DEPLOYMENT_AUDIT.md](../DEPLOYMENT_AUDIT.md) |
 
+## K01 source knowledge and executable handoff
+
+- [Selected pin and source map](../tasks/K01/SOURCE_MAP.md): canonical K01 decision and unresolved gates.
+- [Q1 ABI and activation route](../tasks/K01/research/q1-abi-and-activation-path.md): K04/K05/K08–K12.
+- [Small/27B graphs and operators](../tasks/K01/research/small-and-27b-operator-paths.md): K06/K07 and compatibility.
+- [CUDA11/sm37 blocker matrix](../tasks/K01/research/cuda11-sm37-compatibility.md): K04 compile/library/native-code probes.
+- [State, CLI and device hooks](../tasks/K01/research/state-cli-and-device.md): K08/K13/K14/K17.
+- [Candidate differences and import](../tasks/K01/research/candidate-comparison-and-import.md): K01/K03.
+- [Retained task mapping/readiness](../tasks/K01/IMPLEMENTATION_HANDOFF.md), [work orders](../tasks/K01/WORK_ORDERS.md), [publication status](../tasks/K01/STATUS.md).
+
 ## Minimal task packs
 
 K01/K03/K04: CONTRACT, OPERATIONS, SOURCES. K05/K09–K12: CONTRACT, KERNELS, relevant INTEGRATION/VALIDATION sections. K06: model sections of OPERATIONS/SOURCES. K07/K16/K18/K19: VALIDATION and model/dispatch parts of INTEGRATION. K08/K13/K17: INTEGRATION, CONTRACT, VALIDATION. K14/K15: VALIDATION. K20/K21: atlas plus actual evidence, not another general literature review.

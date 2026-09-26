@@ -64,4 +64,4 @@ Try a small number of real-shape mappings: warp-per-row, subwarp-per-row, severa
 
 ## Optional sign/magnitude extension
 
-X01 may represent x_hat[i]=s[i](alpha+beta*m[i]), m in {0,1}. If admitted later, the masked dot is `popcount(M) - 2*popcount((W XOR S) AND M)`, summed over words; it is not an ordinary binary dot of `S AND M`. The mask-only count can be reused across rows. This correction preserves the idea without the earlier ambiguous sign/mask algebra.
+X01 may represent x_hat[i] = s[i] * (alpha + beta*m[i]), m in {0,1}. If admitted later, the masked dot is `popcount(M) - 2*popcount((W XOR S) AND M)`, summed over words; it is not an ordinary binary dot of `S AND M`. The mask-only count can be reused across rows. This correction preserves the idea without the earlier ambiguous sign/mask algebra.

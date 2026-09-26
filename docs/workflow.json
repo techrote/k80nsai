@@ -3,6 +3,7 @@
   "repository": "techrote/k80nsai",
   "programme": "Single-phase real-model K80 Bonsai POC",
   "master_issue": 1,
+  "research_handoff": {"entry_point":"docs/tasks/K01/SOURCE_MAP.md","work_orders":"docs/tasks/K01/WORK_ORDERS.md","readiness_record":"docs/tasks/K01/STATUS.md","strategy":"enrich-existing-issues","activation":"Maintainer acceptance of K01 documentation PR, K01 signoff, and each existing task/artifact gate; publication alone is not readiness"},
   "retired_task_ids": {"K02":"Optional automatic environment doctor was not published; ordinary build prerequisites remain in K04. No separate utility is required."},
   "live_status_authority": "GitHub issues and evidence comments; this file defines dependencies, not completion",
   "milestones": {"M0":"Known inputs and reproducible base","M1":"Reference chat and first real B1 experiment","M2":"B2/B3/adaptive and 27B frontier","M3":"Bounded tuning, clean rerun, handoff","X":"Deferred opt-in extensions"},

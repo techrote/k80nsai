@@ -1,0 +1,3 @@
+# Preserve the exact upstream blobs, including their original line endings.
+# Existing upstream whitespace is retained; integrity is checked by Git tree/blob IDs.
+/vendor/llama.cpp/** -text -whitespace linguist-vendored

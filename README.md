@@ -24,4 +24,26 @@ Milestones are evidence checkpoints within the single phase. Dependencies and co
 
 Run `python scripts/check_workflow.py` from the repository root. Optional `--live` checks public issue IDs and titles. See the [deployment audit](docs/DEPLOYMENT_AUDIT.md) for what was and was not validated during publication.
 
-Build and chat commands will be added and tested by the implementation tasks. Planned flags in the reference bundle are not already available binaries.
+The bounded host workspace is described below. Chat commands remain downstream implementation work.
+
+## Pinned host workspace
+
+K03 imports `ggml-org/llama.cpp@56381e407c0ccfb3a6f71e668a27a901001d22ce`.
+See the [import/licence/reproduction record](docs/tasks/K03/IMPORT.md) and
+[K03 status](docs/tasks/K03/STATUS.md). This verifies host integration; CUDA/K80,
+model execution and experimental chat remain downstream work.
+
+From the repository root with Git, Python 3.10+, CMake 3.19+ and C++17 tools:
+
+```text
+python scripts/verify_upstream.py
+cmake -S . -B build/host -G "Visual Studio 17 2022" -A x64
+cmake --build build/host --config Release --target k80nsai-host-smoke --parallel 2
+ctest --test-dir build/host -C Release --output-on-failure
+```
+
+These are native Windows x64 host commands. Other generators are selectable;
+Linux/macOS builds are untested. The root profile rejects CUDA/system-ggml
+overrides. Products stay in ignored `build/` or outside source. Reconfigure after
+switching commits to refresh the implementation identity. Planned experimental
+flags in the reference bundle are not already available binaries.
